@@ -1,0 +1,16 @@
+[
+	{
+		'Id': 1,
+		'Location': 'c:\\users\\bruce\\skydrive\\projects\\logaggregator\\sample files\\Test.log',
+		'Parser': {
+			'AssemblyName': 'C:\\Users\\Bruce\\SkyDrive\\Projects\\LogAggregator\\Extensions\\build\\product\\Parser.dll',
+			'ClassName': 'Gator.Extensions.Parser.TestParser'
+		},
+		'Listeners': [
+			{
+			'AssemblyName': 'C:\\Users\\Bruce\\SkyDrive\\Projects\\LogAggregator\\Extensions\\build\\product\\Listener.dll',
+			'ClassName': 'Gator.Extensions.Listener.ConsoleOutput'
+			}
+		]
+	}
+]

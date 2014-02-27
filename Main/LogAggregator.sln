@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2D510A0-0939-4CBB-899E-73A84F6D695D}"
+	ProjectSection(SolutionItems) = preProject
+		GatorData.json = GatorData.json
+		LogAggregator.vsmdi = LogAggregator.vsmdi
+		..\sample files\Test.log = ..\sample files\Test.log
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{3DF7143F-72B4-4C06-B6AF-486D13E61960}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{047E75CC-B2CD-4866-9E59-939D1C625C55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test - Unit", "Test\Unit\Test - Unit.csproj", "{0AE87B76-5050-4FF7-996E-0DA7865A5C22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BA06F4B7-A369-4B31-B371-862406D53209}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aggregator", "Aggregator\Aggregator.csproj", "{5A9505D9-2AC8-4F45-B7A5-329C10EF5E37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DF7143F-72B4-4C06-B6AF-486D13E61960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF7143F-72B4-4C06-B6AF-486D13E61960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF7143F-72B4-4C06-B6AF-486D13E61960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF7143F-72B4-4C06-B6AF-486D13E61960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{047E75CC-B2CD-4866-9E59-939D1C625C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{047E75CC-B2CD-4866-9E59-939D1C625C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{047E75CC-B2CD-4866-9E59-939D1C625C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{047E75CC-B2CD-4866-9E59-939D1C625C55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AE87B76-5050-4FF7-996E-0DA7865A5C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE87B76-5050-4FF7-996E-0DA7865A5C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE87B76-5050-4FF7-996E-0DA7865A5C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE87B76-5050-4FF7-996E-0DA7865A5C22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A9505D9-2AC8-4F45-B7A5-329C10EF5E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A9505D9-2AC8-4F45-B7A5-329C10EF5E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A9505D9-2AC8-4F45-B7A5-329C10EF5E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A9505D9-2AC8-4F45-B7A5-329C10EF5E37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_BuildVersioningStyle = None.None.Increment.YearDayOfYear
+		BuildVersion_UseGlobalSettings = True
+		BuildVersion_AssemblyInfoFilename = Properties\AssemblyInfo.cs
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = LogAggregator.vsmdi
+	EndGlobalSection
+EndGlobal

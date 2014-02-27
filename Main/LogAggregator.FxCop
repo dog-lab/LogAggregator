@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="10.0" Name="My FxCop Project">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">$(FxCopDir)\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded, Good, Noise" NewOnly="False" />
+   <Report Status="Active, Good, Noise" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="en-US" />
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/bin/Debug/Aggregator.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Console/bin/Debug/AggregatorConsole.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/HookParser/bin/Debug/HookParser.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Model/bin/Debug/Model.dll" Analyze="True" AnalyzeAllChildren="False">
+   <Modules AnalyzeAllChildren="False">
+    <Module Name="model.dll" Analyze="True" AnalyzeAllChildren="False">
+     <Namespaces AnalyzeAllChildren="False">
+      <Namespace Name="" Analyze="False" AnalyzeAllChildren="True" />
+      <Namespace Name="HighMark.Monitor.LogAggregator" Analyze="True" AnalyzeAllChildren="True" />
+      <Namespace Name="Model" Analyze="True" AnalyzeAllChildren="True" />
+     </Namespaces>
+     <Resources AnalyzeAllChildren="True" />
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="$(ProjectDir)/Parser/bin/Debug/LogParser.dll" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityTransparencyRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="10.0">
+  <Targets>
+   <Target Name="$(ProjectDir)/Console/bin/Debug/AggregatorConsole.exe">
+    <Modules>
+     <Module Name="aggregatorconsole.exe">
+      <Resources>
+       <Resource Name="HighMark.Monitor.LogAggregator.Resources.resources">
+        <Messages>
+         <Message Id="Runnable" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2011-08-22 21:54:20Z">
+          <Issue Name="StringResource">
+           <Item>'HighMark.Monitor.LogAggregator.Resources.resx'</Item>
+           <Item>CommandLineUsage</Item>
+           <Item>Runnable</Item>
+           <Item>Usage: Taskmon -s[erver] ServerName -c[ommand] CommandName&#xD;&#xA;&#xD;&#xA; Where: -s[erver]  : name of the workstation or server providing scheduled &#xD;&#xA;                     task information&#xD;&#xA;        -c[ommand] : command - GetNextRunnableTask, ListAllTasks,&#xD;&#xA;                     ListFaultyTasks&#xD;&#xA;&#xD;&#xA; If no server n...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bruce">
+            <Note Id="3" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="Taskmon" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2011-08-22 21:54:20Z">
+          <Issue Name="StringResource">
+           <Item>'HighMark.Monitor.LogAggregator.Resources.resx'</Item>
+           <Item>CommandLineUsage</Item>
+           <Item>Taskmon</Item>
+           <Item>Usage: Taskmon -s[erver] ServerName -c[ommand] CommandName&#xD;&#xA;&#xD;&#xA; Where: -s[erver]  : name of the workstation or server providing scheduled &#xD;&#xA;                     task information&#xD;&#xA;        -c[ommand] : command - GetNextRunnableTask, ListAllTasks,&#xD;&#xA;                     ListFaultyTasks&#xD;&#xA;&#xD;&#xA; If no server n...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bruce">
+            <Note Id="1" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="erver" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2011-08-22 21:54:20Z">
+          <Issue Name="StringResource">
+           <Item>'HighMark.Monitor.LogAggregator.Resources.resx'</Item>
+           <Item>CommandLineUsage</Item>
+           <Item>erver</Item>
+           <Item>Usage: Taskmon -s[erver] ServerName -c[ommand] CommandName&#xD;&#xA;&#xD;&#xA; Where: -s[erver]  : name of the workstation or server providing scheduled &#xD;&#xA;                     task information&#xD;&#xA;        -c[ommand] : command - GetNextRunnableTask, ListAllTasks,&#xD;&#xA;                     ListFaultyTasks&#xD;&#xA;&#xD;&#xA; If no server n...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'HighMark.Monitor.LogAggregator.Resources.resx'</Item>
+           <Item>CommandLineUsage</Item>
+           <Item>erver</Item>
+           <Item>Usage: Taskmon -s[erver] ServerName -c[ommand] CommandName&#xD;&#xA;&#xD;&#xA; Where: -s[erver]  : name of the workstation or server providing scheduled &#xD;&#xA;                     task information&#xD;&#xA;        -c[ommand] : command - GetNextRunnableTask, ListAllTasks,&#xD;&#xA;                     ListFaultyTasks&#xD;&#xA;&#xD;&#xA; If no server n...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bruce">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="ommand" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2011-08-22 21:54:20Z">
+          <Issue Name="StringResource">
+           <Item>'HighMark.Monitor.LogAggregator.Resources.resx'</Item>
+           <Item>CommandLineUsage</Item>
+           <Item>ommand</Item>
+           <Item>Usage: Taskmon -s[erver] ServerName -c[ommand] CommandName&#xD;&#xA;&#xD;&#xA; Where: -s[erver]  : name of the workstation or server providing scheduled &#xD;&#xA;                     task information&#xD;&#xA;        -c[ommand] : command - GetNextRunnableTask, ListAllTasks,&#xD;&#xA;                     ListFaultyTasks&#xD;&#xA;&#xD;&#xA; If no server n...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'HighMark.Monitor.LogAggregator.Resources.resx'</Item>
+           <Item>CommandLineUsage</Item>
+           <Item>ommand</Item>
+           <Item>Usage: Taskmon -s[erver] ServerName -c[ommand] CommandName&#xD;&#xA;&#xD;&#xA; Where: -s[erver]  : name of the workstation or server providing scheduled &#xD;&#xA;                     task information&#xD;&#xA;        -c[ommand] : command - GetNextRunnableTask, ListAllTasks,&#xD;&#xA;                     ListFaultyTasks&#xD;&#xA;&#xD;&#xA; If no server n...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bruce">
+            <Note Id="2" />
+           </User>
+          </Notes>
+         </Message>
+        </Messages>
+       </Resource>
+      </Resources>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Model/bin/Debug/Model.dll">
+    <Modules>
+     <Module Name="model.dll">
+      <Namespaces>
+       <Namespace Name="Model">
+        <Types>
+         <Type Name="File">
+          <Members>
+           <Member Name="#FileMetrics">
+            <Messages>
+             <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Excluded" Created="2011-08-22 21:54:20Z">
+              <Issue>
+               <Item>'File.FileMetrics'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#LogEntries">
+            <Messages>
+             <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Excluded" Created="2011-08-22 21:54:20Z">
+              <Issue>
+               <Item>'File.LogEntries'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Metrics">
+            <Messages>
+             <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Excluded" Created="2011-08-22 21:54:20Z">
+              <Issue>
+               <Item>'File.Metrics'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ParseHooks">
+            <Messages>
+             <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Excluded" Created="2011-08-22 21:54:20Z">
+              <Issue>
+               <Item>'File.ParseHooks'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Parser/bin/Debug/LogParser.dll">
+    <Modules>
+     <Module Name="logparser.dll">
+      <Namespaces>
+       <Namespace Name="HighMark.Monitor.LogAggregator">
+        <Types>
+         <Type Name="SocrawParser">
+          <Messages>
+           <Message Id="Socraw" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2011-08-23 12:20:52Z">
+            <Issue Name="Type">
+             <Item>Socraw</Item>
+             <Item>'SocrawParser'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Notes>
+   <User Name="bruce">
+    <Note Id="0" Modified="2011-08-22 21:54:55Z">This is not an issue!</Note>
+    <Note Id="1" Modified="2011-08-22 21:55:20Z">This is not an issue!</Note>
+    <Note Id="2" Modified="2011-08-22 21:55:36Z">This is not an issue!</Note>
+    <Note Id="3" Modified="2011-08-22 21:55:46Z">This is not an issue!</Note>
+   </User>
+  </Notes>
+  <Rules>
+   <Rule TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227">
+    <Resolution Name="Default">Change {0} to be read-only by removing the property setter.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
+   </Rule>
+   <Rule TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703">
+    <Resolution Name="StringResource">In resource {0}, referenced by name '{1}', correct the spelling of '{2}' in string value '{3}'.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>
