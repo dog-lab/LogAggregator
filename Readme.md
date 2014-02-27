@@ -64,10 +64,10 @@
     those "Log" and "Aggregator" words all the time...anyway:<br />
     The project is divided into two solutions:
 </p>
-<ol>
-    <li>The main solution that "drives" the parsing code, and</li>
-    <li>The sample projects providing the plug-in assemblies used in the main solution</li>
-</ol>
+
+1. The main solution that "drives" the parsing code, and
+2. The sample projects providing the plug-in assemblies used in the main solution
+
 <p>
     You will also find a directory named build-working-sample that builds both solutions, creates a sample json
     control file, and copies all of the files (including a sample log file) into the product subdirectory. The
@@ -77,13 +77,12 @@
 <p>
     How do you use the aggregator? Simple; use C# to create two classes:
 </p>
-    <ol>
-        <li>a parser class with a parse method that creates one LogEntry object for each logical "log line."</li>
-        <li>a listener, or subscriber, class that responds to a line parsed event produced by the parse method
-            mentioned above...this class can then write to screen, save stuff to a database, send emails,
-            or whatever else you might dream up.
-        </li>
-    </ol>
+
+1. a parser class with a parse method that creates one LogEntry object for each logical "log line."
+2. a listener, or subscriber, class that responds to a line parsed event produced by the parse method
+    mentioned above...this class can then write to screen, save stuff to a database, send emails,
+    or whatever else you might dream up.
+
 <p>
     Note that a listener is not actually required. The parse method signature shows that it returns a
     list of LogEntry objects obtained from parsing the entire log file. You can return an empty list and
