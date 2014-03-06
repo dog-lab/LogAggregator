@@ -1,5 +1,5 @@
-<h2>Log Aggregator</h2>
-<p>A tool for combining disparate log files into a common format useful for troubleshooting.</p>
+<h2>Tree Collector</h2>
+<p>A tool for combining log files into a common format useful for troubleshooting.</p>
 <h3>History</h3>
 <p>
     A previous employer had a large number of small utilities that ran at least once a day up to tens of times a day. All
@@ -21,7 +21,7 @@
     It was easy to see that a different parser was needed for each log!
 </p>
 <p>
-    Out of this chaos the LogAggregator program design evolved to incorporate just that idea: assignable parsers for
+    Out of this chaos the Tree Collector program design evolved to incorporate just that idea: assignable parsers for
     each log file. In short, the program allows for "plug-ins" to handle the various log formats to produce a
     standardized log structure that I could more easily filter, search, and analyze results related to solving the
     "problem du jour."
@@ -43,7 +43,7 @@
 
 <h3>This Version</h3>
 <p>
-    LogAggregator has already gone through a few iterations. This version is another rewrite with an objective
+    Tree Collector has already gone through a few iterations. This version is another rewrite with an objective
     to simplify. I'm also using this opportunity to remove some of the "heavier" dependencies I had like
     relying on SQL server to drive inputs and outputs and using Entity Framework for database access.
     Also, I used this opportunity to simplify the design to where most inputs and outputs in the program are
@@ -58,10 +58,8 @@
     also go along for the ride.
 </p>
 
-<h3>Using Gator</h3>
+<h3>Using Tree Collector</h3>
 <p>
-    Yes, another program named "Gator"...I'm lazy...It's just easier to say "Gator" than stringing together
-    those "Log" and "Aggregator" words all the time...anyway:<br />
     The project is divided into two solutions:
 </p>
 
@@ -227,7 +225,7 @@ Console.WriteLine("Log ID: {0}\tTimestamp: {1}\tMessage: {2}", e.Entry.Source.Lo
 
 <h4>Licenses</h4>
 <p>
-    MIT: LogAggregator (this program) and psake<br />
+    MIT: tree-collector (this program) and psake<br />
     nUnit: NUnit License<br />
     Moq: BSD License
 </p>
