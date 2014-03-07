@@ -18,13 +18,13 @@
     <li>A single log entry might be spread over several lines</li>
 </ul>
 <p>
-    It was easy to see that a different parser was needed for each log!
+    Clearly a different parser was needed for each log.
 </p>
 <p>
     Out of this chaos the Tree Collector program design evolved to incorporate just that idea: assignable parsers for
     each log file. In short, the program allows for "plug-ins" to handle the various log formats to produce a
-    standardized log structure that I could more easily filter, search, and analyze results related to solving the
-    "problem du jour."
+    standardized log structure. With a common structure I could more easily filter, search, and analyze results related
+    to solving the "problem du jour."
 </p>
 <p>
     The program originally used SQL server tables to provide things like Log file paths, DLL paths, and class names
@@ -36,9 +36,9 @@
     Finally, during development it became clear that a notification mechanism, based on log content, was a
     desirable feature. This was really how the whole "plug-in" thing started. How so? Some log files
     contain entries for errors that don't necessarily flow back to the UI, or Console.
-    The errors may be important but not severe enough to halt processing. With this scenario the first
-    plug-in was conceived: an email was sent whenever certain error text was found in a log entry;
-    in other words, look for "magic words" in the log file.
+    The errors may be important enough to send a notification that an important event occurred.
+    With this scenario the first plug-in was conceived: an email was sent whenever certain error text,
+    or a "magic word" or two, was found in a log entry.
 </p>
 
 <h3>This Version</h3>
@@ -46,8 +46,8 @@
     Tree Collector has already gone through a few iterations. This version is another rewrite with an objective
     to simplify. I'm also using this opportunity to remove some of the "heavier" dependencies I had like
     relying on SQL server to drive inputs and outputs and using Entity Framework for database access.
-    Also, I used this opportunity to simplify the design to where most inputs and outputs in the program are
-    handled by developer selected plug-ins. For example, writing output to the screen, or saving standardized
+    Also, I used this opportunity to simplify the design so that the developer handles most inputs *and*
+    outputs in the program via plug-ins. For example, writing output to the screen, or saving standardized
     log entries to a database, are handled by plug-ins.
 </p>
 <p>
@@ -73,7 +73,7 @@
     on your installation.
 </p>
 <p>
-    How do you use the aggregator? Simple; use C# to create two classes:
+    How do you use the log aggregator? Simple; use C# to create two classes:
 </p>
 
 1. a parser class with a parse method that creates one LogEntry object for each logical "log line."
@@ -101,7 +101,7 @@
 2/5/2000 01:45 Establishing Accounting System Connectivity
 </pre>
 <p>
-    ...this is the sample used to drive this maiden voyage of Gator.
+    ...this is used in the Test Parser sample.
 </p>
 <p>
     This is a pretty simple example; a log file with a date and time followed by a (hopefully) meaningful message.
@@ -127,9 +127,10 @@
 
 </pre>
 <p>
-    Stare at the above class definition long enough and you will notice a field named "Extensions." I use this to
+    Stare at that class definition long enough and you will notice a field named "Extensions." I use this to
     capture any other parts of interest from the log file. My thought is to put searchable content here as
-    JSON data but your imagination might find better possible uses.
+    JSON data but your imagination might find better possible uses. You will see an example of this in some
+    of the other samples included with the package.
 </p>
 
 <h4>The Sample Parser</h4>
@@ -143,7 +144,9 @@
     and placed into a new LogEntry object.
 </p>
 <pre>
+// loop thru all lines, process the line with a regular expression and create a LogEntry
 for (int i = startingIndex; i < logLines.Count; i++) {
+    // break the line into a timestamp (M/d/yyyy hh:mm) and a message
     MatchCollection matches = Regex.Matches(logLines[i], @"^(.+?\ .+?)\ (.+?)$");
 
     int j = i;
@@ -190,7 +193,7 @@ Console.WriteLine("Log ID: {0}\tTimestamp: {1}\tMessage: {2}", e.Entry.Source.Lo
 <h4>The JSON data file</h4>
 <p>
     GatorData.json is used to provide the information needed to create the parser object, any listeners, and finally
-    create the minimum required for a useful LogFile entity object. Let's take a look at the sample included with
+    create the minimum required for a useful LogFile entity object. Let's take a look at the data included with
     the sample code:
 </p>
 <pre>
@@ -212,8 +215,8 @@ Console.WriteLine("Log ID: {0}\tTimestamp: {1}\tMessage: {2}", e.Entry.Source.Lo
 ]
 </pre>
 <p>
-    The file contains the minimum information we need to create a Parser object, add any Listener objects, and the
-    whereabouts of the actual log. The ID field is there for future database purposes use it as you see fit.
+    The file contains the minimum information needed to create a Parser object, add any Listener objects, and the
+    whereabouts of the actual log. The ID field is there for future database purposes; use it as you see fit.
 </p>
 
 <h3>Licenses and Supporting Cast</h3>
@@ -245,12 +248,12 @@ StyleCcp from Microsoft.
 <h3>Final Words</h3>
 <p>
     This is my first project on GitHub so I'm definitely finding my way around. If I missed something, or put
-    things in the wrong place, please let me know; at the same time, please point me to the information needed to
-    correct it.
+    things in the wrong place, please let me know; any pointers to the information needed to correct it is
+    also appreciated.
 </p>
 <p>
-    There are certainly more ways to handle this problem. In fact, I'm evaluating many other ideas right now.
-    On the other hand, the project will grow, in its current form, on several fronts; some of them include
+    There are certainly more ways to handle this problem. In fact, I'm evaluating several ideas right now.
+    Nonetheless, the project will grow, in its current form, on several fronts; some of them include
     more log parsing examples, SQL Server data, No-SQL data, in memory data, and more. Other ideas need further
     refinement before rolling them in. Stay tuned...
 </p>
