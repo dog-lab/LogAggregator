@@ -7,7 +7,7 @@
     /// </summary>
     public class Extras {
         /// <summary>
-        /// Finds the LogContent index to begin parsing the log file. This is necessary for cases
+        /// Finds the LogContent index to begin parsing a log file. This is necessary for cases
         /// when the log file had content added since the last parse or for circular log files.
         /// </summary>
         /// <param name="log">The log.</param>

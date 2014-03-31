@@ -11,6 +11,11 @@
     /// </summary>
     public abstract class BaseParser : ILogParser {
         /// <summary>
+        /// The Log File object describing the log parsed by this parser.
+        /// </summary>
+        private LogFile _log;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BaseParser"/> class. The log file descriptor
         /// object is passed in to more easily assign log file information for each log entry (each line)
         /// parsed.
@@ -49,7 +54,11 @@
         /// <value>
         /// The log.
         /// </value>
-        public LogFile Log { get; protected set; }
+        public LogFile Log {
+            get { return _log; }
+
+            protected set { _log = value; }
+        }
 
         /// <summary>
         /// Parses, or transforms, the Log File lines passed in the IList of strings. At this point

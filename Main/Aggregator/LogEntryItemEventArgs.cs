@@ -10,6 +10,16 @@
     /// </summary>
     public class LogEntryItemEventArgs : EventArgs {
         /// <summary>
+        /// The Log Entry object behind the firing of this event.
+        /// </summary>
+        private LogEntry _logEntry;
+
+        /// <summary>
+        /// The unparsed line that goes with the Log Entry object.
+        /// </summary>
+        private string _rawLine = string.Empty;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LogEntryItemEventArgs"/> class.
         /// </summary>
         /// <param name="logEntry">The log entry.</param>
@@ -25,7 +35,11 @@
         /// <value>
         /// The entry.
         /// </value>
-        public LogEntry Entry { get; set; }
+        public LogEntry Entry {
+            get { return _logEntry; }
+
+            set { _logEntry = value; }
+        }
 
         /// <summary>
         /// Gets or sets the raw line that supplied the data for the LogEntry.
@@ -33,6 +47,10 @@
         /// <value>
         /// The raw line.
         /// </value>
-        public string RawLine { get; set; }
+        public string RawLine {
+            get { return _rawLine; }
+
+            set { _rawLine = value; }
+        }
     }
 }

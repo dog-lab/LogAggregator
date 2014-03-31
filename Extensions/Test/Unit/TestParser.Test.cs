@@ -5,18 +5,27 @@
     using NUnit.Framework;
     using Parser;
 
+    /// <summary>
+    /// Simple parser example.
+    /// </summary>
     // ReSharper disable InconsistentNaming
     [TestFixture]
     public class When_a_test_parser_is_used {
+        /// <summary>
+        /// Sample log data
+        /// </summary>
         private List<string> _logData = new List<string> {
             @"1/2/2000 02:01:01 Testing Database Connection",
             @"1/2/2000 02:01:02 Attempting to Log Activity in Log Database",
             @"1/2/2000 02:01:04 Retrieving Last Pending Item Activity"
         };
-            
+
+        /// <summary>
+        /// It_notifies_for_each_line_parsed this instance.
+        /// </summary>
         [Test]
         public void It_notifies_for_each_line_parsed() {
-            var parser = new Gator.Extensions.Parser.TestParser(GetUnparsedSource());
+            var parser = new TestParser(GetUnparsedSource());
             var lines = 0;
             parser.LineParsed += (o, e) => lines += 1;
             parser.Parse(_logData);
@@ -24,6 +33,9 @@
             Assert.IsTrue(lines == 3);
         }
 
+        /// <summary>
+        /// It_returns_a_list_of_s the log entries_for_the_entire_log.
+        /// </summary>
         [Test]
         public void It_returns_a_list_of_LogEntries_for_the_entire_log() {
             var parser = new TestParser(GetUnparsedSource());
@@ -32,6 +44,9 @@
             Assert.IsTrue(entries.Count.Equals(3));            
         }
 
+        /// <summary>
+        /// It_returns_correct_number_of_entries_given_a_starting_indexes this instance.
+        /// </summary>
         [Test]
         public void It_returns_correct_number_of_entries_given_a_starting_index() {
             var log = GetUnparsedSource();
@@ -42,7 +57,11 @@
             // indexes are zero based - remember to add one to the starting index to get a correct count
             Assert.IsTrue(entries.Count.Equals(_logData.Count - Extras.FindStartingIndex(log, _logData) + 1));
         }
-    
+
+        /// <summary>
+        /// Gets the unparsed source.
+        /// </summary>
+        /// <returns>A test LogFile object.</returns>
         private static LogFile GetUnparsedSource() {
             return new LogFile {
                 Id = 1,

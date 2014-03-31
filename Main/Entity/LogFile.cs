@@ -10,12 +10,51 @@
     /// </summary>
     public class LogFile {
         /// <summary>
+        /// The unique identifier of this Log File object.
+        /// </summary>
+        private int _id;
+
+        /// <summary>
+        /// The computer host name that produced the log.
+        /// </summary>
+        private string _hostName = string.Empty;
+        
+        /// <summary>
+        /// The count, or index, into the log file the last time it was parsed.
+        /// </summary>
+        private int _lastLineCount;
+        
+        /// <summary>
+        /// The last parsed line for this log file.
+        /// </summary>
+        private string _lastParsedLine = string.Empty;
+        
+        /// <summary>
+        /// The last time and date entry for this log file.
+        /// </summary>
+        private DateTime? _lastTimeStamp;
+        
+        /// <summary>
+        /// The full path and file name to this log file.
+        /// </summary>
+        private string _location = string.Empty;
+        
+        /// <summary>
+        /// The log name.
+        /// </summary>
+        private string _name = string.Empty;
+
+        /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
-        public int Id { get; set; }
+        public int Id {
+            get { return _id; }
+
+            set { _id = value; }
+        }
 
         /// <summary>
         /// Gets or sets the name of the host.
@@ -23,7 +62,11 @@
         /// <value>
         /// The name of the host.
         /// </value>
-        public string HostName { get; set; }
+        public string HostName {
+            get { return _hostName; }
+
+            set { _hostName = value; }
+        }
 
         /// <summary>
         /// Gets or sets the last line count.
@@ -31,15 +74,11 @@
         /// <value>
         /// The last line count.
         /// </value>
-        public int LastLineCount { get; set; }
+        public int LastLineCount {
+            get { return _lastLineCount; }
 
-        /// <summary>
-        /// Gets or sets the last timestamp.
-        /// </summary>
-        /// <value>
-        /// The last timestamp.
-        /// </value>
-        public DateTime? LastTimestamp { get; set; }
+            set { _lastLineCount = value; }
+        }
 
         /// <summary>
         /// Gets or sets the last parsed line.
@@ -47,7 +86,23 @@
         /// <value>
         /// The last parsed line.
         /// </value>
-        public string LastParsedLine { get; set; }
+        public string LastParsedLine {
+            get { return _lastParsedLine; }
+
+            set { _lastParsedLine = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the last timestamp.
+        /// </summary>
+        /// <value>
+        /// The last timestamp.
+        /// </value>
+        public DateTime? LastTimestamp {
+            get { return _lastTimeStamp; }
+
+            set { _lastTimeStamp = value; }
+        }
 
         /// <summary>
         /// Gets or sets the location.
@@ -55,7 +110,11 @@
         /// <value>
         /// The location.
         /// </value>
-        public string Location { get; set; }
+        public string Location {
+            get { return _location; }
+
+            set { _location = value; }
+        }
 
         /// <summary>
         /// Gets or sets the name.
@@ -63,6 +122,10 @@
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; set; }
+        public string Name {
+            get { return _name; }
+
+            set { _name = value; }
+        }
     }
 }

@@ -16,7 +16,7 @@ try {
 	Set-ExecutionPolicy unrestricted
 	Import-Module "$scriptDir\psake.psm1"
 	$psake.use_exit_on_error = $true
-	Invoke-Psake "$scriptDir\default.ps1" $task -framework '4.0' -parameters $parameters
+	Invoke-Psake "$scriptDir\default.ps1" $task -framework '2.0' -parameters $parameters
 	ExitWithCode($LastExitcode)
 } catch {
 	Write-Error $_

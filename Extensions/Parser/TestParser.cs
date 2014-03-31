@@ -2,7 +2,6 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
     using System.Text.RegularExpressions;
     using Broos.Monitor.LogAggregator.Aggregator;
     using Broos.Monitor.LogAggregator.Entity;
@@ -12,7 +11,6 @@
     /// @"1/2/2000 02:01:01 Testing Database Connection",
     /// @"1/2/2000 02:01:02 Attempting to Log Activity in Log Database",
     /// @"1/2/2000 02:01:04 Retrieving Last Pending Item Activity"
-    /// 
     /// </summary>
     public class TestParser : BaseParser {
        /// <summary>
@@ -25,47 +23,45 @@
         /// <summary>
         /// Parses the specified log lines and fires an OnLineParsed event for each line parsed.
         /// </summary>
-        /// <param name="logLines">The log lines.</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">logLines</exception>
+        /// <param name="logLines">Lines of text from the log.</param>
+        /// <returns>A list of LogEntry objects containing data from the parsed log lines.</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown when the logLines argument is null.</exception>
         public override IList<LogEntry> Parse(IList<string> logLines) {
             if (logLines == null) {
                 throw new ArgumentNullException("logLines");
             }
 
-            var list = new List<LogEntry>();
-            int startingIndex = Extras.FindStartingIndex(base.Log, logLines);
+            List<LogEntry> list = new List<LogEntry>();
+            int startingIndex = Extras.FindStartingIndex(Log, logLines);
             for (int i = startingIndex; i < logLines.Count; i++) {
                 if (string.IsNullOrEmpty(logLines[i])) {
                     continue;
                 }
 
+                // parse out date/time and message parts of the log
                 MatchCollection matches = Regex.Matches(logLines[i], @"^(.+?\ .+?)\ (.+?)$");
                 if (matches.Count <= 0) {
                     continue;
                 }
 
-                int j = i;
-                foreach (
-                   var logEntry in
-                   from Match match in matches
-                   select match.Groups into groups
-                   where
-                      (groups.Count > 0)
-                   select new LogEntry {
-                       Index = j,
-                       Message = groups[2].Value,
-                       Source = Log,
-                       Timestamp = DateTime.Parse(groups[1].Value, CultureInfo.InvariantCulture)
-                   }
-                ) {
-                    list.Add(logEntry);
-                    this.OnLineParsed(this, new LogEntryItemEventArgs(logEntry, logLines[i]));
+                // only capture entries that match the regular expression and add them to the LogEntry list.
+                foreach (Match match in matches) {
+                    if (match.Groups.Count > 0) {
+                        LogEntry logEntry = new LogEntry();
+                        logEntry.Index = i;
+                        logEntry.Message = match.Groups[2].Value;
+                        logEntry.Source = Log;
+                        logEntry.Timestamp = DateTime.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture);
+
+                        list.Add(logEntry);
+                        this.OnLineParsed(this, new LogEntryItemEventArgs(logEntry, logLines[i]));
+                    }
                 }
             }
 
-            base.Log.LastLineCount = logLines.Count();
-            base.Log.LastParsedLine = logLines[startingIndex];
+            // capture data thats useful on subsequent runs over the same log file.
+            Log.LastLineCount = logLines.Count;
+            Log.LastParsedLine = logLines[startingIndex];
 
             return list;
         }

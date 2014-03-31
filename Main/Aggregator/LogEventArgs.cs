@@ -10,6 +10,11 @@
     /// </summary>
     public class LogEventArgs : EventArgs {
         /// <summary>
+        /// LogFile object involved in firing this event.
+        /// </summary>
+        private LogFile _log;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LogEventArgs"/> class.
         /// </summary>
         /// <param name="log">The log.</param>
@@ -23,6 +28,10 @@
         /// <value>
         /// The log file object thingy.
         /// </value>
-        public LogFile Log { get; set; }
+        public LogFile Log {
+            get { return _log; }
+
+            set { _log = value; }
+        }
     }
 }

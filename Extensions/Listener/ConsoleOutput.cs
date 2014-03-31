@@ -4,10 +4,16 @@
 
     /// <summary>
     /// Sample class that captures the output of each line from the parsing code and
-    /// spits parts of it back out on the command line.
+    /// spits parts of it back out to the console.
     /// </summary>
     public class ConsoleOutput : IParseListener {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "System.Console.WriteLine(System.String,System.Object,System.Object,System.Object)", Justification = "Reviewed")]
+        /// <summary>
+        /// Called when a log line is parsed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="LogEntryItemEventArgs"/> instance containing the event data.</param>
+        /// <exception cref="System.ArgumentNullException">Thrown when the event args argument is null.</exception>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "System.Console.WriteLine(System.String,System.Object,System.Object,System.Object)", Justification = "Sample Program not for release.")]
         public void OnLineParsed(object sender, LogEntryItemEventArgs e) {
             if (e == null) {
                 throw new ArgumentNullException("e");
@@ -25,7 +31,7 @@
         }
 
         /// <summary>
-        /// Called when file parsing has stoped.
+        /// Called when file parsing has stopped.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="LogEventArgs" /> instance containing the event data.</param>

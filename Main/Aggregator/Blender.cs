@@ -18,6 +18,21 @@
     /// </summary>
     public class Blender {
         /// <summary>
+        /// The log file text lines.
+        /// </summary>
+        private IList<string> _logContent;
+        
+        /// <summary>
+        /// The parser object for parsing this log.
+        /// </summary>
+        private BaseParser _baseParser;
+
+        /// <summary>
+        /// The list of listeners notified of events fired from the parser.
+        /// </summary>
+        private IList<IParseListener> _subscribers;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Blender"/> class.
         /// </summary>
         /// <param name="parser">The parser used to parse the log text.</param>
@@ -86,7 +101,11 @@
         /// <value>
         /// The contents of the log.
         /// </value>
-        public IList<string> LogContent { get; set; }
+        public IList<string> LogContent {
+            get { return _logContent; }
+
+            set { _logContent = value; }
+        }
 
         /// <summary>
         /// Gets the base parser for the log. This is used to kick off
@@ -95,7 +114,12 @@
         /// <value>
         /// The base parser.
         /// </value>
-        public BaseParser BaseParser { get; private set; }
+        // ReSharper disable ValueParameterNotUsed
+        public BaseParser BaseParser {
+            get { return _baseParser; }
+
+            private set { _baseParser = value; }
+        }
 
         /// <summary>
         /// Gets the subscribers, or listeners, that wish to respond to the events
@@ -105,7 +129,12 @@
         /// <value>
         /// The subscribers.
         /// </value>
-        public IList<IParseListener> Subscribers { get; private set; }
+        public IList<IParseListener> Subscribers {
+            get { return _subscribers; }
+
+            private set { _subscribers = value; }
+        }
+        // ReSharper restore ValueParameterNotUsed
 
         /// <summary>
         /// Parses the log file text.

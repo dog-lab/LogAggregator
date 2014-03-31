@@ -6,6 +6,16 @@
     /// </summary>
     public class AssemblyClass {
         /// <summary>
+        /// Full path and name of an Assembly.
+        /// </summary>
+        private string _assemblyName = string.Empty;
+
+        /// <summary>
+        /// Full Class name.
+        /// </summary>
+        private string _className = string.Empty;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="AssemblyClass"/> class.
         /// </summary>
         /// <param name="assemblyName">Path of the assembly file.</param>
@@ -21,7 +31,12 @@
         /// <value>
         /// The name of the assembly.
         /// </value>
-        public string AssemblyName { get; private set; }
+        // ReSharper disable ValueParameterNotUsed
+        public string AssemblyName {
+            get { return _assemblyName; }
+
+            private set { _assemblyName = value; }
+        }
 
         /// <summary>
         /// Gets the name of the class "of interest" in the assembly file.
@@ -29,6 +44,11 @@
         /// <value>
         /// The name of the class.
         /// </value>
-        public string ClassName { get; private set; }
+        public string ClassName {
+            get { return _className; }
+
+            private set { _className = value; }
+        }
+        // ReSharper restore ValueParameterNotUsed
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Broos.Monitor.LogAggregator.Console {
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using Aggregator;
     using Newtonsoft.Json;
 
@@ -22,24 +21,20 @@
                 }
             }
 
-            var sources = JsonConvert.DeserializeObject<IList<GatorData>>(
+            IList<GatorData> sources = JsonConvert.DeserializeObject<IList<GatorData>>(
                 File.ReadAllText(loaderData)
             );
 
-            foreach (
-                var blender in sources.Select(
-                    source => new Blender(
-                        Loader.LoadParser(
-                            source.Parser.AssemblyName,
-                            source.Parser.ClassName,
-                            source
-                        ),
-                        Loader.LoadListeners(source.Listeners),
-                        Loader.LoadLogContent(source.Location)
-                    )
-                )
-            ) {
-                blender.Parse();
+            foreach (GatorData source in sources) {
+                new Blender(
+                    Loader.LoadParser(
+                        source.Parser.AssemblyName,
+                        source.Parser.ClassName,
+                        source
+                    ),
+                    Loader.LoadListeners(source.Listeners),
+                    Loader.LoadLogContent(source.Location)
+                ).Parse();
             }
         }
     }

@@ -1,8 +1,8 @@
 ﻿namespace Broos.Monitor.LogAggregator.Test.Unit {
     using System;
+    using System.Collections.Generic;
     using Aggregator;
     using Entity;
-    using Moq;
     using NUnit.Framework;
 
     // when a parser loader is used
@@ -13,7 +13,7 @@
     // ReSharper disable InconsistentNaming
     [TestFixture]
     public class When_an_aggregator_is_used {
-        private System.Collections.Generic.List<string> _logData = new System.Collections.Generic.List<string> {
+        private List<string> _logData = new List<string> {
             @"Info Jan 02 2000 02:00 Testing Database Connection",
             @"Info Jan 02 2000 02:00 Attempting to Log Activity in Log Database",
             @"Info Jan 02 2000 02:00 Retrieving Last Pending Item Activity"
@@ -21,13 +21,11 @@
 
         [Test]
         public void It_notifies_when_the_log_is_not_parsed() {
-            var parser = new Mock<BaseParser>(GetParsedSource());
-            var listeners = new Mock<System.Collections.Generic.List<IParseListener>>();
-            // ReSharper disable once ObjectCreationAsStatement
-            // new Mock<System.Collections.Generic.List<string>>();
+            var parser = new TestBaseParser(GetParsedSource());
+            var listeners = new List<IParseListener>();
             var wasCalled = false;
 
-            var aggregator = new Blender(parser.Object, listeners.Object, _logData);
+            var aggregator = new Blender(parser, listeners, _logData);
             aggregator.NoParse += (o, e) => wasCalled = true;
             aggregator.Parse();
 
@@ -36,32 +34,27 @@
 
         [Test]
         public void It_throws_an_exception_on_a_null_parser() {
-            var listeners = new Mock<System.Collections.Generic.List<IParseListener>>();
-            // ReSharper disable once ObjectCreationAsStatement
-            // new Mock<System.Collections.Generic.List<string>>();
-            var ex = Assert.Throws<ArgumentNullException>(() => new Blender(null, listeners.Object, _logData));
+            var listeners = new List<IParseListener>();
+            var ex = Assert.Throws<ArgumentNullException>(() => new Blender(null, listeners, _logData));
             Assert.That(ex.ParamName, Is.EqualTo("parser"));
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", MessageId = "Broos.Monitor.LogAggregator.Aggregator.Blender"), Test]
         public void It_throws_an_exception_on_null_log_content() {
-            var parser = new Mock<BaseParser>(GetUnparsedSource());
-            var listeners = new Mock<System.Collections.Generic.List<IParseListener>>();
-            // ReSharper disable once ObjectCreationAsStatement
-            // new Mock<System.Collections.Generic.List<string>>();
-            var ex = Assert.Throws<ArgumentNullException>(() => new Blender(parser.Object, listeners.Object, null));
+            var parser = new TestBaseParser(GetUnparsedSource());
+            var listeners = new List<IParseListener>();
+            var ex = Assert.Throws<ArgumentNullException>(() => new Blender(parser, listeners, null));
+
             Assert.That(ex.ParamName, Is.EqualTo("logContent"));
         }
 
         [Test]
         public void It_notifies_that_parsing_has_started() {
-            var parser = new Mock<BaseParser>(GetUnparsedSource());
-            var listeners = new Mock<System.Collections.Generic.List<IParseListener>>();
-            // ReSharper disable once ObjectCreationAsStatement
-            // new Mock<System.Collections.Generic.List<string>>();
+            var parser = new TestBaseParser(GetUnparsedSource());
+            var listeners = new List<IParseListener>();
             var wasCalled = false;
 
-            var aggregator = new Blender(parser.Object, listeners.Object, _logData);
+            var aggregator = new Blender(parser, listeners, _logData);
             aggregator.ParseStarted += (o, e) => wasCalled = true;
             aggregator.Parse();
 
@@ -70,13 +63,11 @@
 
         [Test]
         public void It_notifies_that_parsing_has_ended() {
-            var parser = new Mock<BaseParser>(GetUnparsedSource());
-            var listeners = new Mock<System.Collections.Generic.List<IParseListener>>();
-            // ReSharper disable once ObjectCreationAsStatement
-            // new Mock<System.Collections.Generic.List<string>>();
+            var parser = new TestBaseParser(GetUnparsedSource());
+            var listeners = new List<IParseListener>();
             var wasCalled = false;
 
-            var aggregator = new Blender(parser.Object, listeners.Object, _logData);
+            var aggregator = new Blender(parser, listeners, _logData);
             aggregator.ParseEnded += (o, e) => wasCalled = true;
             aggregator.Parse();
 

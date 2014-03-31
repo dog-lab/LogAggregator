@@ -3,6 +3,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
     using System.Security;
+    using System.Security.Permissions;
     using Entity;
 
     /// <summary>
@@ -59,7 +60,7 @@
         /// </exception>
         protected ParseCodeException(SerializationInfo info, StreamingContext context) : base(info, context) {
             if (info != null) {
-                var type = Type.GetType("Broos.Monitor.LogAggregator.Entity.LogFile");
+                Type type = Type.GetType("Broos.Monitor.LogAggregator.Entity.LogFile");
                 if (type != null) {
                     _file = (LogFile) info.GetValue("LogFile", type);
                 }
@@ -84,6 +85,7 @@
         /// <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter" />
         /// </PermissionSet>
         [SecurityCritical]
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context) {
             base.GetObjectData(info, context);
             info.AddValue("LogFile", _file);

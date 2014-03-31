@@ -2,7 +2,6 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
     using Entity;
 
@@ -21,7 +20,7 @@
         /// Thrown when a valid BaseParser object cannot be created.
         /// </exception>
         public static IParseListener LoadListener(string assemblyName, string className) {
-            var assembly = Assembly.Load(AssemblyName.GetAssemblyName(assemblyName));
+            Assembly assembly = Assembly.Load(AssemblyName.GetAssemblyName(assemblyName));
             if (assembly == null) {
                 throw new ParseCodeException(string.Format("Assembly {0} not loaded", assemblyName));
             }
@@ -31,7 +30,7 @@
                 throw new ParseCodeException(string.Format("{0} not found in assembly: {1}", className, assemblyName));
             }
 
-            var parseListener = Activator.CreateInstance(type) as IParseListener;
+            IParseListener parseListener = Activator.CreateInstance(type) as IParseListener;
             if (parseListener == null) {
                 throw new ParseCodeException(string.Format("{0} does not implement IParseListener", type.Name));
             }
@@ -45,7 +44,12 @@
         /// <param name="subscribers">The subscribers to events produced by the Aggregator and Parser objects.</param>
         /// <returns>A list of Parse Listener objects.</returns>
         public static IList<IParseListener> LoadListeners(IEnumerable<AssemblyClass> subscribers) {
-            return subscribers.Select(subscriber => LoadListener(subscriber.AssemblyName, subscriber.ClassName)).ToList();
+            List<IParseListener> list = new List<IParseListener>();
+            foreach (AssemblyClass subscriber in subscribers) {
+                list.Add(LoadListener(subscriber.AssemblyName, subscriber.ClassName));
+            }
+
+            return list;
         }
 
         /// <summary>
@@ -54,7 +58,12 @@
         /// <param name="fileName">Path to the log file.</param>
         /// <returns>All of the LogFile text as a list of strings. One list item for each line in the log file.</returns>
         public static IList<string> LoadLogContent(string fileName) {
-            return File.ReadAllLines(fileName).Where(s => s.Trim() != string.Empty).ToList();
+            List<string> list = new List<string>();
+            foreach (string line in File.ReadAllLines(fileName)) {
+                list.Add(line);
+            }
+
+            return list;
         }
 
         /// <summary>
@@ -68,7 +77,7 @@
         /// Thrown when a valid IParseListener object cannot be created.
         /// </exception>
         public static BaseParser LoadParser(string assemblyName, string className, LogFile log) {
-            var assembly = Assembly.Load(AssemblyName.GetAssemblyName(assemblyName));
+            Assembly assembly = Assembly.Load(AssemblyName.GetAssemblyName(assemblyName));
             if (assembly == null) {
                 throw new ParseCodeException(string.Format("Assembly {0} not loaded", assemblyName));
             }
@@ -78,7 +87,7 @@
                 throw new ParseCodeException(string.Format("{0} not found in assembly: {1}", className, assemblyName));
             }
 
-            var baseParser = Activator.CreateInstance(type, new object[] { log }) as BaseParser;
+            BaseParser baseParser = Activator.CreateInstance(type, new object[] { log }) as BaseParser;
             if (baseParser == null) {
                 throw new ParseCodeException(string.Format("{0} does not inherit from BaseParser", type.Name));
             }
