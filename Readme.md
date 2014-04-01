@@ -146,4 +146,4 @@ Also, another "like it or leave it": the existence of any GlobalSuppression.cs f
 
 This is my first project on GitHub so I'm definitely finding my way around. If I missed something, or put things in the wrong place, please let me know; and, if possible, please point me to the information needed to avoid it in the future.
 
-Also, more further explanations and project notes are available via blog entries at http://www.oblander.net/orchard/dog-lab .
+Also, further explanations and project notes are available via blog entries at http://www.oblander.net/orchard/dog-lab .
