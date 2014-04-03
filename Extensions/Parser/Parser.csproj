@@ -34,6 +34,7 @@
     <Compile Include="Extras.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestParser.cs" />
+    <Compile Include="WinTaskParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Aggregator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1f2b8898ec0190d5, processorArchitecture=MSIL">
