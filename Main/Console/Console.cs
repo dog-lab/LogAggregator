@@ -1,4 +1,5 @@
 ﻿namespace Broos.Monitor.LogAggregator.Console {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using Aggregator;
@@ -14,11 +15,12 @@
         /// <param name="args">The array of arguments passed in on the command line.</param>
         /// <exception cref="System.ArgumentNullException">command line arguments: args</exception>
         public static void Main(string[] args) {
-            string loaderData = "gator-console.json";
-            if (args != null) {
-                if (args.Length > 0) {
-                    loaderData = args[0];
-                }
+            ConsoleArguments arg = ConsoleArguments.Create(args);
+            string loaderData = arg.In;
+
+            if (!File.Exists(loaderData)) {
+                Console.WriteLine(Resource.FileNotFound, loaderData);
+                Environment.Exit(1);
             }
 
             IList<GatorData> sources = JsonConvert.DeserializeObject<IList<GatorData>>(
